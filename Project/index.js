@@ -107,7 +107,6 @@ $(function(){
         },
         onAppointmentUpdated: function(e) {
             showToast("Updated",e.appointmentData.text, "info");
-            console.log(e);
         },
         onAppointmentDeleted: function(e) {
             showToast("Deleted",e.appointmentData.text, "error");
@@ -133,10 +132,10 @@ $(function(){
         onAppointmentFormOpening: function(data) {
             var form = data.form,
             nhanvienInfo = getEmpById(data.appointmentData.Object) || {};
+
+            var formData = form.option("formData"); 
             
             let mainGroupItems = form.itemOption('mainGroup').items; 
-
-            //console.log(mainGroupItems);
 
             form.itemOption('mainGroup',"items", [{
                     colSpan: 2,
@@ -246,6 +245,7 @@ $(function(){
                     },
                     name: "mroom",                     
                     dataField: "MeetingRoomID",
+                    visible: toggleRoom(formData.Meeting),
                     editorType: "dxSelectBox",
                     editorOptions: {
                         items: MettingRoomdata,
@@ -256,6 +256,15 @@ $(function(){
             ]);
         }
     }).dxScheduler("instance");
+
+    function toggleRoom(bool) {
+        if(bool != null){
+            return bool;
+        }
+        else {
+            return false;
+        }
+    }
 
     function showToast(event, value, type) {
             DevExpress.ui.notify(event + " \"" + value + "\"" + " task", type, 800);
