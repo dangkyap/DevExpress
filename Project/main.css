@@ -1,0 +1,14 @@
+.cdx-field-label {
+	 width: 350px;
+	 font-weight: bold;
+	 float:  left;
+}
+
+.cdx-field-value {
+	width: 30% !important;
+	float: left;
+}
+
+.cswitch {
+	float: left !important; 
+}

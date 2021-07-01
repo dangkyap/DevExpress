@@ -68,7 +68,6 @@ $(function(){
         onValueChanged: function (e) {
             phongId = e.value;            
             FilterData(phongId, switchMaster);
-            console.log(phongId);
         }
     });
 
@@ -108,6 +107,7 @@ $(function(){
         },
         onAppointmentUpdated: function(e) {
             showToast("Updated",e.appointmentData.text, "info");
+            console.log(e);
         },
         onAppointmentDeleted: function(e) {
             showToast("Deleted",e.appointmentData.text, "error");
@@ -135,6 +135,8 @@ $(function(){
             nhanvienInfo = getEmpById(data.appointmentData.Object) || {};
             
             let mainGroupItems = form.itemOption('mainGroup').items; 
+
+            //console.log(mainGroupItems);
 
             form.itemOption('mainGroup',"items", [{
                     colSpan: 2,
@@ -181,12 +183,12 @@ $(function(){
                             label: {
                                 text: "Là cuộc họp"
                             },
+                            name: "IsMetting",
                             dataField: "Meeting",
                             editorType: "dxSwitch",
                             editorOptions: {
                                 onValueChanged: function(e) {
-                                form.itemOption("mroom", "visible", e.value);
-                                console.log("R: " + e.value)
+                                form.itemOption("mainGroup.mroom", "visible", e.value);
                                 }
                             },                          
                         }, {
@@ -242,13 +244,13 @@ $(function(){
                     label: {
                         text: "Phòng"
                     },
-                    name: "mroom",                  
+                    name: "mroom",                     
                     dataField: "MeetingRoomID",
                     editorType: "dxSelectBox",
                     editorOptions: {
                         items: MettingRoomdata,
                         displayExpr: "text",
-                        valueExpr: "id"
+                        valueExpr: "id",
                     },
                 }
             ]);
