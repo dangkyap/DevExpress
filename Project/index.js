@@ -1,10 +1,12 @@
 $(function(){
 
+    //Default Data to Show
     var data = new DevExpress.data.DataSource(data1);
     data.filter([
         ["Phongban", "=", Phongbandata[1].id],
         "or",
-        ["Type", "=", 1]
+        ["CalendarType", "=", 1]
+
     ]);
     data.load().done;
 
@@ -15,9 +17,7 @@ $(function(){
                 data.filter([
                     ["Phongban", "=", id],
                     "or",
-                    ["Type", "=", 1],
-                    "or",
-                    ["Type", "=", 2]
+                    ["CalendarType", "=", 1],
                 ]);
                 data.load().done;
                 break;
@@ -29,35 +29,37 @@ $(function(){
                 break;
             case 3:
                 data.filter([                   
-                    ["Type", "=", 1],                   
+                    ["CalendarType", "=", 1],                   
                 ]);
                 data.load().done;
                 break;
             case 4:
                 data.filter([                   
-                    ["Type", "=", 1],                   
+                    ["CalendarType", "=", 0],                   
                 ]);
                 data.load().done;
                 break;
-        }        
-    }
+        };        
+    };
 
+    //Case for check box option
     function check(option) {
-        if(option[0] = true && option[1] = true) {
+        if(option[0] == true && option[1] == true) {
             return 1;   //All
-        } 
-        if(option[0] = true && option[1] = false) {
+        }; 
+        if(option[0] == true && option[1] == false) {
             return 2;   //Phòng ban
-        } 
-        if(option[0] = false && option[1] = true) {
+        }; 
+        if(option[0] == false && option[1] == true) {
             return 3;   //Cá nhân
-        } 
-        if(option[0] = false && option[1] = false) {
+        };
+        if(option[0] == false && option[1] == false) {
             return 4;   //None
-        }
-    }
+        };
+    };
 
-    var phongId;
+    //Phongban dropdown box
+    var phongId = Phongbandata[1].id;
     $("#slbPhong").dxSelectBox({
         items: Phongbandata,
         displayExpr: "text",
@@ -65,10 +67,12 @@ $(function(){
         value: Phongbandata[1].id,
         onValueChanged: function (e) {
             phongId = e.value;            
-            //FilterData(phongId, switchMaster);
+            FilterData(phongId, switchMaster);
+            console.log(phongId);
         }
     });
 
+    //Ca nhan, phong ban check box
     var switchMaster = [true, true];    //[0] = Phòng ban, [1] = Cá nhân
 
     $("#switch-Pb").dxCheckBox({
@@ -77,7 +81,7 @@ $(function(){
         text: "Phòng ban",
         onValueChanged: function(e) {
             switchMaster[0] = e.value;
-            //FilterData(phongId, switchMaster);
+            FilterData(phongId, switchMaster);
         }
     });
 
@@ -87,10 +91,11 @@ $(function(){
         text: "Cá nhân",
         onValueChanged: function(e) {
             switchMaster[1] = e.value;
-            //FilterData(phongId, switchMaster);
+            FilterData(phongId, switchMaster);
         }
     });
 
+    //Scheduler main
     $("#scheduler").dxScheduler({
         timeZone: "America/Los_Angeles",
         dataSource: data,
@@ -120,7 +125,7 @@ $(function(){
             fieldExpr: "MeetingRoomID",
             dataSource: MettingRoomdata,
         }, { 
-            fieldExpr: "Type",
+            fieldExpr: "CalendarType",
             dataSource: Typedata,
             useColorAsDefault: true,
         }],
