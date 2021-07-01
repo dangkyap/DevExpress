@@ -1,5 +1,96 @@
 $(function(){
 
+    var data = new DevExpress.data.DataSource(data1);
+    data.filter([
+        ["Phongban", "=", Phongbandata[1].id],
+        "or",
+        ["Type", "=", 1]
+    ]);
+    data.load().done;
+
+    function FilterData(id, option) {
+        var op = check(option);
+        switch (op) {
+            case 1:
+                data.filter([
+                    ["Phongban", "=", id],
+                    "or",
+                    ["Type", "=", 1],
+                    "or",
+                    ["Type", "=", 2]
+                ]);
+                data.load().done;
+                break;
+            case 2:
+                data.filter([                   
+                    ["Phongban", "=", id],                   
+                ]);
+                data.load().done;
+                break;
+            case 3:
+                data.filter([                   
+                    ["Type", "=", 1],                   
+                ]);
+                data.load().done;
+                break;
+            case 4:
+                data.filter([                   
+                    ["Type", "=", 1],                   
+                ]);
+                data.load().done;
+                break;
+        }        
+    }
+
+    function check(option) {
+        if(option[0] = true && option[1] = true) {
+            return 1;   //All
+        } 
+        if(option[0] = true && option[1] = false) {
+            return 2;   //Phòng ban
+        } 
+        if(option[0] = false && option[1] = true) {
+            return 3;   //Cá nhân
+        } 
+        if(option[0] = false && option[1] = false) {
+            return 4;   //None
+        }
+    }
+
+    var phongId;
+    $("#slbPhong").dxSelectBox({
+        items: Phongbandata,
+        displayExpr: "text",
+        valueExpr: "id",
+        value: Phongbandata[1].id,
+        onValueChanged: function (e) {
+            phongId = e.value;            
+            //FilterData(phongId, switchMaster);
+        }
+    });
+
+    var switchMaster = [true, true];    //[0] = Phòng ban, [1] = Cá nhân
+
+    $("#switch-Pb").dxCheckBox({
+        value: true,
+        width: 180,
+        text: "Phòng ban",
+        onValueChanged: function(e) {
+            switchMaster[0] = e.value;
+            //FilterData(phongId, switchMaster);
+        }
+    });
+
+    $("#switch-Cn").dxCheckBox({
+        value: true,
+        width: 180,
+        text: "Cá nhân",
+        onValueChanged: function(e) {
+            switchMaster[1] = e.value;
+            //FilterData(phongId, switchMaster);
+        }
+    });
+
     $("#scheduler").dxScheduler({
         timeZone: "America/Los_Angeles",
         dataSource: data,
@@ -87,6 +178,12 @@ $(function(){
                             },
                             dataField: "Meeting",
                             editorType: "dxSwitch",
+                            editorOptions: {
+                                onValueChanged: function(e) {
+                                form.itemOption("mroom", "visible", e.value);
+                                console.log("R: " + e.value)
+                                }
+                            },                          
                         }, {
                             label: {
                                 text: "Nguyên ngày"
@@ -133,6 +230,18 @@ $(function(){
                     editorType: "dxTagBox",
                     editorOptions: {
                         items: UserIDdata,
+                        displayExpr: "text",
+                        valueExpr: "id"
+                    },
+                }, {
+                    label: {
+                        text: "Phòng"
+                    },
+                    name: "mroom",                  
+                    dataField: "MeetingRoomID",
+                    editorType: "dxSelectBox",
+                    editorOptions: {
+                        items: MettingRoomdata,
                         displayExpr: "text",
                         valueExpr: "id"
                     },

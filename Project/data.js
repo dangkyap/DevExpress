@@ -1,4 +1,4 @@
-var data = [
+var data1 = [
     {
         ModuleID: 20,
         CreatedByUserID: "1A",
@@ -19,6 +19,7 @@ var data = [
         Private: false,
         Meeting: true,   
         MeetingRoomID: ["R2"],
+        Phongban: "PB1",
         Important: true,
         Comment: null,
         laplai: false,
@@ -67,6 +68,7 @@ var data = [
         Private: false,
         Meeting: false,   
         MeetingRoomID: null,
+        Phongban: "PB3",
         Important: true,
         Comment: null,
         laplai: false,
@@ -91,6 +93,7 @@ var data = [
         Private: false,
         Meeting: false,   
         MeetingRoomID: null,
+        Phongban: "PB2",
         Important: true,
         Comment: null,
         laplai: false,
@@ -115,6 +118,7 @@ var data = [
         Private: false,
         Meeting: true,   
         MeetingRoomID: ["R3"],
+        Phongban: "PB2",
         Important: true,
         Comment: null,
         laplai: false,
@@ -188,6 +192,19 @@ var Typedata = [
         text: "Lịch phòng ban",
         id: 2,
         color: "#aa17ff"
+    }
+];
+
+var Phongbandata = [
+    {
+        text: "Phòng Kế toán",
+        id: "PB1"
+    }, {
+        text: "Phòng Tư vấn, Thiết kế và Sản xuất",
+        id: "PB2"
+    }, {
+        text: "Phòng Đào tạo",
+        id: "PB3"
     }
 ];
 
