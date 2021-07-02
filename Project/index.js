@@ -3,15 +3,18 @@ $(function(){
     //Default Data to Show
     var data = new DevExpress.data.DataSource(data1);
     data.filter([
-        ["Phongban", "=", Phongbandata[1].id],
+        ["OrganizationId", "=", Congtydata[0].id],
         "or",
-        ["CalendarType", "=", 1]
+        ["CalendarType", "=", 1],
+        "or",
+        ["CalendarType", "=", 2]
 
     ]);
     data.load().done;
 
     function FilterData(id, option) {
         var op = check(option);
+        console.log(op);
         switch (op) {
             case 1:
                 data.filter([
@@ -44,43 +47,65 @@ $(function(){
 
     //Case for check box option
     function check(option) {
-        if(option[0] == true && option[1] == true) {
+        if(option[0] == true && option[1] == true && option[2] == true) {
             return 1;   //All
         }; 
-        if(option[0] == true && option[1] == false) {
-            return 2;   //Phòng ban
+        if(option[0] == false && option[1] == true && option[2] == true) {
+            return 2;   //Phòng ban, Cá nhân
         }; 
-        if(option[0] == false && option[1] == true) {
-            return 3;   //Cá nhân
+        if(option[0] == true && option[1] == false && option[2] == true) {
+            return 3;   //Công ty, Cá nhân
         };
-        if(option[0] == false && option[1] == false) {
-            return 4;   //None
+        if(option[0] == true && option[1] == true && option[2] == false) {
+            return 4;   //Công ty, Phòng ban
+        };
+        if(option[0] == true && option[1] == false && option[2] == false) {
+            return 5;   //Công ty
+        };
+        if(option[0] == false && option[1] == true && option[2] == false) {
+            return 6;   //Phòng ban
+        };
+        if(option[0] == false && option[1] == false && option[2] == true) {
+            return 7;   //Cá nhân
+        };
+        if(option[0] == false && option[1] == false && option[2] == false) {
+            return 8;   //None
         };
     };
 
     //Phongban dropdown box
-    var phongId = Phongbandata[1].id;
+    var Organization = Congtydata[0].id;
     $("#slbPhong").dxSelectBox({
-        items: Phongbandata,
+        items: Congtydata,
         displayExpr: "text",
         valueExpr: "id",
-        value: Phongbandata[1].id,
+        value: Congtydata[0].id,
         onValueChanged: function (e) {
-            phongId = e.value;            
-            FilterData(phongId, switchMaster);
+            Organization = e.value;            
+            FilterData(Organization, switchMaster);
         }
     });
 
     //Ca nhan, phong ban check box
-    var switchMaster = [true, true];    //[0] = Phòng ban, [1] = Cá nhân
+    var switchMaster = [true, true, true];    //[0] = Công ty, [1] = Phòng ban, [2] = Cá nhân
+
+    $("#switch-Ct").dxCheckBox({
+        value: true,
+        width: 180,
+        text: "Công ty",
+        onValueChanged: function(e) {
+            switchMaster[0] = e.value;
+            FilterData(Organization, switchMaster);
+        }
+    });
 
     $("#switch-Pb").dxCheckBox({
         value: true,
         width: 180,
         text: "Phòng ban",
         onValueChanged: function(e) {
-            switchMaster[0] = e.value;
-            FilterData(phongId, switchMaster);
+            switchMaster[1] = e.value;
+            FilterData(Organization, switchMaster);
         }
     });
 
@@ -89,8 +114,8 @@ $(function(){
         width: 180,
         text: "Cá nhân",
         onValueChanged: function(e) {
-            switchMaster[1] = e.value;
-            FilterData(phongId, switchMaster);
+            switchMaster[2] = e.value;
+            FilterData(Organization, switchMaster);
         }
     });
 
@@ -133,7 +158,7 @@ $(function(){
             var form = data.form,
             nhanvienInfo = getEmpById(data.appointmentData.Object) || {};
 
-            var formData = form.option("formData"); 
+            var formData = form.option("formData");
             
             let mainGroupItems = form.itemOption('mainGroup').items; 
 

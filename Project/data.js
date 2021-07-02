@@ -12,7 +12,7 @@ var data1 = [
         startDate: new Date("2021-03-29T16:30:00.000Z"),
         endDate: new Date("2021-03-29T18:30:00.000Z"),
         allDay: false,
-        Title: "Lịch Phòng Kế Toán 1",
+        Title: "Lịch Phòng Kế Toán CT1",
         description: "Website Re-Design Plan",
         IsFile: false,
         Status: 2,
@@ -23,6 +23,7 @@ var data1 = [
         Important: true,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG1",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -37,7 +38,7 @@ var data1 = [
         startDate: new Date("2021-03-29T19:00:00.000Z"),
         endDate: new Date("2021-03-29T20:00:00.000Z"),
         allDay: false,
-        Title: "Lịch Cá Nhân 1",
+        Title: "Lịch Cá Nhân CT1",
         description: "Book Flights to San Fran for Sales Trip",
         IsFile: false,
         Status: 2,
@@ -47,6 +48,7 @@ var data1 = [
         Important: true,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG1",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -57,11 +59,11 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        CalendarType: 3,
         startDate: new Date("2021-03-29T21:30:00.000Z"),
         endDate: new Date("2021-03-29T22:30:00.000Z"),
         allDay: true,
-        Title: "Lịch Phòng Đào Tạo 1",
+        Title: "Lịch CT 1",
         description: "Install New Router in Dev Room",
         IsFile: false,
         Status: 2,
@@ -72,6 +74,7 @@ var data1 = [
         Important: true,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG1",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -86,7 +89,7 @@ var data1 = [
         startDate: new Date("2021-03-31T16:45:00.000Z"),
         endDate: new Date("2021-03-31T18:15:00.000Z"),
         allDay: true,
-        Title: "Lịch Phòng TVTKSX 1",
+        Title: "Lịch Phòng TVTKSX CT2",
         description: "Install New Database",
         IsFile: false,
         Status: 2,
@@ -97,6 +100,7 @@ var data1 = [
         Important: true,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG2",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -107,11 +111,11 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        CalendarType: 3,
         startDate: new Date("2021-03-31T19:00:00.000Z"),
         endDate: new Date("2021-03-31T21:00:00.000Z"),
         allDay: false,
-        Title: "Lịch Phòng TVTKSX 2",
+        Title: "Lịch CT 2",
         description: "Approve New Online Marketing Strategy",
         IsFile: false,
         Status: 2,
@@ -122,6 +126,7 @@ var data1 = [
         Important: true,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG2",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -136,7 +141,7 @@ var data1 = [
         startDate: new Date("2021-03-31T22:15:00.000Z"),
         endDate: new Date("2021-03-31T23:30:00.000Z"),
         allDay: false,
-        Title: "Lịch Cá Nhân 2",
+        Title: "Lịch Cá Nhân CT2",
         description: "Upgrade Personal Computers",
         IsFile: false,
         Status: 2,
@@ -146,6 +151,7 @@ var data1 = [
         Important: false,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG2",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -160,7 +166,7 @@ var data1 = [
         startDate: new Date("2021-04-01T21:00:00.000Z"),
         endDate: new Date("2021-04-01T22:30:00.000Z"),
         allDay: false,
-        Title: "Lịch Phòng Kế Toán 2",
+        Title: "Lịch Phòng Kế Toán CT3",
         description: "Brochure Design Review",
         IsFile: false,
         Status: 2,
@@ -171,6 +177,7 @@ var data1 = [
         Important: false,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG3",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -185,7 +192,7 @@ var data1 = [
         startDate: new Date("2021-04-02T17:00:00.000Z"),
         endDate: new Date("2021-04-02T18:30:00.000Z"),
         allDay: false,
-        Title: "Lịch Phòng Đào Tạo 2",
+        Title: "Lịch Phòng Đào Tạo CT3",
         description: "Create Icons for Website",
         IsFile: false,
         Status: 2,
@@ -196,6 +203,7 @@ var data1 = [
         Important: false,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG3",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -210,7 +218,7 @@ var data1 = [
         startDate: new Date("2021-04-02T23:30:00.000Z"),
         endDate: new Date("2021-04-03T01:00:00.000Z"),
         allDay: false,
-        Title: "Lịch Cá Nhân 3",
+        Title: "Lịch Cá Nhân CT3",
         description: "Submit New Website Design",
         IsFile: false,
         Status: 2,
@@ -220,6 +228,7 @@ var data1 = [
         Important: false,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG3",
         Isdeleted: false        
     }, {
         ModuleID: 20,
@@ -230,11 +239,11 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        CalendarType: 3,
         startDate: new Date("2021-03-31T22:15:00.000Z"),
         endDate: new Date("2021-03-31T23:30:00.000Z"),
         allDay: false,
-        Title: "Lịch Phòng TVTKSX 3",
+        Title: "Lịch CT 3",
         description: "Launch New Website",
         IsFile: false,
         Status: 2,
@@ -245,6 +254,7 @@ var data1 = [
         Important: false,
         Comment: null,
         laplai: false,
+        OrganizationId: "ORG3",
         Isdeleted: false        
     }
 ];
@@ -291,6 +301,10 @@ var Typedata = [
         text: "Lịch phòng ban",
         id: 2,
         color: "#aa17ff"
+    }, {
+        text: "Lịch công ty",
+        id: 3,
+        color: "#0cb03b"
     }
 ];
 
@@ -306,4 +320,17 @@ var Phongbandata = [
         id: "PB3"
     }
 ];
+
+var Congtydata = [
+    {
+        text: "Công ty 1",
+        id: "ORG1"
+    }, {
+        text: "Công ty 2",
+        id: "ORG2"
+    }, {
+        text: "Công ty 3",
+        id: "ORG3"
+    }
+]
 
