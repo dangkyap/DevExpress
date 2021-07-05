@@ -8,7 +8,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-03-29T16:30:00.000Z"),
         endDate: new Date("2021-03-29T18:30:00.000Z"),
         allDay: false,
@@ -33,7 +33,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 1,
+        color: 1,
         startDate: new Date("2021-03-29T19:00:00.000Z"),
         endDate: new Date("2021-03-29T20:00:00.000Z"),
         allDay: false,
@@ -57,7 +57,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-03-29T21:30:00.000Z"),
         endDate: new Date("2021-03-29T22:30:00.000Z"),
         allDay: true,
@@ -82,7 +82,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-30T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-30T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-03-31T16:45:00.000Z"),
         endDate: new Date("2021-03-31T18:15:00.000Z"),
         allDay: true,
@@ -107,7 +107,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-03-31T19:00:00.000Z"),
         endDate: new Date("2021-03-31T21:00:00.000Z"),
         allDay: false,
@@ -132,7 +132,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 1,
+        color: 1,
         startDate: new Date("2021-03-31T22:15:00.000Z"),
         endDate: new Date("2021-03-31T23:30:00.000Z"),
         allDay: false,
@@ -156,7 +156,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-04-01T21:00:00.000Z"),
         endDate: new Date("2021-04-01T22:30:00.000Z"),
         allDay: false,
@@ -181,7 +181,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-04-02T17:00:00.000Z"),
         endDate: new Date("2021-04-02T18:30:00.000Z"),
         allDay: false,
@@ -206,7 +206,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 1,
+        color: 1,
         startDate: new Date("2021-04-02T23:30:00.000Z"),
         endDate: new Date("2021-04-03T01:00:00.000Z"),
         allDay: false,
@@ -230,7 +230,7 @@ var data1 = [
         CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
         LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
         OwnerCode: "P1",
-        CalendarType: 2,
+        color: 2,
         startDate: new Date("2021-03-31T22:15:00.000Z"),
         endDate: new Date("2021-03-31T23:30:00.000Z"),
         allDay: false,
@@ -282,17 +282,6 @@ var MettingRoomdata = [
     }
 ];
 
-var Typedata = [
-    {
-        text: "Lịch cá nhân",
-        id: 1,
-        color: "#1793ff"
-    }, {
-        text: "Lịch phòng ban",
-        id: 2,
-        color: "#aa17ff"
-    }
-];
 
 var Phongbandata = [
     {
@@ -306,4 +295,3 @@ var Phongbandata = [
         id: "PB3"
     }
 ];
-

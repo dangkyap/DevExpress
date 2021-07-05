@@ -12,3 +12,11 @@
 .cswitch {
 	float: left !important; 
 }
+
+#switch-Pb > .dx-checkbox-container > .dx-checkbox-text {
+	color:  #aa17ff;
+}
+
+#switch-Cn > .dx-checkbox-container > .dx-checkbox-text {
+	color:  #1793ff;
+}
