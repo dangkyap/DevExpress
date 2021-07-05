@@ -1,7 +1,8 @@
 $(function(){
 
     //Default Data to Show
-    var data = new DevExpress.data.DataSource(data1);
+    var store = new DevExpress.data.ArrayStore(data2);
+    var data = new DevExpress.data.DataSource(store);
     data.filter([
         ["Phongban", "=", Phongbandata[1].id],
         "or",
@@ -67,7 +68,24 @@ $(function(){
         valueExpr: "id",
         value: Phongbandata[1].id,
         onValueChanged: function (e) {
-            phongId = e.value;            
+            phongId = e.value;
+            console.log(e.value);
+            if(phongId == "PB1") {
+                store = new DevExpress.data.ArrayStore(data1);
+                data = new DevExpress.data.DataSource(store);
+                data.load();
+                view();
+            } else if(phongId == "PB2") {
+                store = new DevExpress.data.ArrayStore(data2);
+                data = new DevExpress.data.DataSource(store);
+                data.load();
+                view();
+            } else if(phongId == "PB3") {
+                store = new DevExpress.data.ArrayStore(data3);
+                data = new DevExpress.data.DataSource(store);
+                data.load();
+                view();
+            };
             FilterData(phongId, switchMaster);
         }
     });
@@ -107,8 +125,8 @@ $(function(){
     }
     ];
 
-    //Scheduler main
-    $("#scheduler").dxScheduler({
+    function view() {
+        $("#scheduler").dxScheduler({
         timeZone: "America/Los_Angeles",
         dataSource: data,
         views: ["week", "month"],
@@ -144,6 +162,25 @@ $(function(){
             const form = e.form;
             var formData = form.option("formData");
             let mainGroupItems = form.itemOption('mainGroup').items;
+            console.log(mainGroupItems);
+
+            mainGroupItems.forEach(function callbackFn(element, index) {
+                if(element.dataField == "color") {
+                    console.log("color: " + index);
+                    mainGroupItems.splice(index,1);
+                }
+            });
+                      
+            mainGroupItems.forEach(function callbackFn(element, index) {
+                if(element.dataField == "MeetingRoomID") {
+                    console.log("Room: " + index);
+                    mainGroupItems[index].colSpan = 2;
+                    mainGroupItems[index].visible = toggleRoom(formData.Meeting);
+                }
+            });
+
+
+
             form.itemOption("mainGroup.Meeting", {
                 editorOptions: {
                     onValueChanged: function(e) {
@@ -151,14 +188,10 @@ $(function(){
                     }
                 }
             });
-            form.itemOption("mainGroup.MeetingRoomID", {
-                colSpan: 2,
-                //visible: toggleRoom(formData.Meeting),
-            });
-            form.itemOption("mainGroup.color", {
-                colSpan: 2,
-                visible: false,
-            });
+            
+            
+                
+            
             
             if (!mainGroupItems.find(function (i) { return i.dataField === "Management" })) {
                 mainGroupItems.push({
@@ -192,7 +225,9 @@ $(function(){
             }
         }
     }).dxScheduler("instance");
-
+    }
+    
+    view();
     function toggleRoom(bool) {
         if(bool != null){
             return bool;
