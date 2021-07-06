@@ -134,6 +134,7 @@ $(function(){
         currentDate: new Date(2021, 2, 28),
         startDayHour: 9,
         onAppointmentAdded: function(e) {
+            console.log(e);
             showToast("Added",e.appointmentData.text, "success");
         },
         onAppointmentUpdated: function(e) {
@@ -162,18 +163,18 @@ $(function(){
             const form = e.form;
             var formData = form.option("formData");
             let mainGroupItems = form.itemOption('mainGroup').items;
-            console.log(mainGroupItems);
+            //console.log(mainGroupItems);
 
             mainGroupItems.forEach(function callbackFn(element, index) {
                 if(element.dataField == "color") {
-                    console.log("color: " + index);
+                    //console.log("color: " + index);
                     mainGroupItems.splice(index,1);
                 }
             });
                       
             mainGroupItems.forEach(function callbackFn(element, index) {
                 if(element.dataField == "MeetingRoomID") {
-                    console.log("Room: " + index);
+                    //console.log("Room: " + index);
                     mainGroupItems[index].colSpan = 2;
                     mainGroupItems[index].visible = toggleRoom(formData.Meeting);
                 }
@@ -247,130 +248,3 @@ $(function(){
                 .toArray()[0];
     }
 });
-
-// onAppointmentFormOpening: function(data) {
-        //     var form = data.form,
-        //     nhanvienInfo = getEmpById(data.appointmentData.Object) || {};
-
-        //     var formData = form.option("formData");
-            
-        //     let mainGroupItems = form.itemOption('mainGroup').items; 
-
-        //     form.itemOption('mainGroup',"items", [{
-        //             colSpan: 2,
-        //             label: {
-        //                 text: "Sự kiện"
-        //             },
-        //             dataField: "Title",
-        //             editorType: "dxTextBox"
-        //         }, {
-        //             label: {
-        //                 text: "Thời gian bắt đầu"
-        //             },
-        //             dataField: "startDate",
-        //             editorType: "dxDateBox",
-        //             editorOptions: {
-        //                 width: "100%",
-        //                 type: "datetime"
-        //             }
-        //         }, {
-        //             label: {
-        //                 text: "Thời gian kết thúc"
-        //             },
-        //             dataField: "endDate",
-        //             editorType: "dxDateBox",
-        //             editorOptions: {
-        //                 width: "100%",
-        //                 type: "datetime"
-        //             }
-        //         }, {
-        //             colSpan: 2,
-        //             label: {
-        //                 text: "Nội dung chi tiết"
-        //             },
-        //             dataField: "description",
-        //             editorType: "dxTextArea",
-        //             editorOptions: {
-        //                 height: "100px  ",                      
-        //             }
-        //         }, {
-        //             itemType: "group",
-        //             colSpan: 2,
-        //             colCount: 3,
-        //             items: [{
-        //                     label: {
-        //                         text: "Là cuộc họp"
-        //                     },
-        //                     name: "IsMetting",
-        //                     dataField: "Meeting",
-        //                     editorType: "dxSwitch",
-        //                     editorOptions: {
-        //                         onValueChanged: function(e) {
-        //                         form.itemOption("mainGroup.mroom", "visible", e.value);
-        //                         }
-        //                     },                          
-        //                 }, {
-        //                     label: {
-        //                         text: "Nguyên ngày"
-        //                     },
-        //                     dataField: "allDay",
-        //                     editorType: "dxSwitch",
-        //                 }, {
-        //                     label: {
-        //                         text: "Lặp lại"
-        //                     },
-        //                     dataField: "laplai",
-        //                     editorType: "dxSwitch",
-        //                 }, {
-        //                     label: {
-        //                         text: "Lịch quan trọng"
-        //                     },
-        //                     dataField: "Important",
-        //                     editorType: "dxSwitch",
-        //                 }, {
-        //                     label: {
-        //                         text: "Riêng tư"
-        //                     },
-        //                     dataField: "Private",
-        //                     editorType: "dxSwitch",
-        //                 }]
-        //             }, {
-        //             colSpan: 2,
-        //             label: {
-        //                 text: "Chủ trì"
-        //             },
-        //             dataField: "Management",
-        //             editorType: "dxTagBox",
-        //             editorOptions: {
-        //                 items: UserIDdata,
-        //                 displayExpr: "text",
-        //                 valueExpr: "id"
-        //             },
-        //         }, {
-        //             colSpan: 2,
-        //             label: {
-        //                 text: "Người tham gia"
-        //             },
-        //             dataField: "Object",
-        //             editorType: "dxTagBox",
-        //             editorOptions: {
-        //                 items: UserIDdata,
-        //                 displayExpr: "text",
-        //                 valueExpr: "id"
-        //             },
-        //         }, {
-        //             label: {
-        //                 text: "Phòng"
-        //             },
-        //             name: "mroom",                     
-        //             dataField: "MeetingRoomID",
-        //             visible: toggleRoom(formData.Meeting),
-        //             editorType: "dxSelectBox",
-        //             editorOptions: {
-        //                 items: MettingRoomdata,
-        //                 displayExpr: "text",
-        //                 valueExpr: "id",
-        //             },
-        //         }
-        //     ]);
-        // }
