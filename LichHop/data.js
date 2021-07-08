@@ -51,7 +51,7 @@ var data1 = [
         Isdeleted: false        
     }, {
         ModuleID: 20,
-        CreatedByUserID: "1A",
+        CreatedByUserID: "1C",
         LastModifiedByUserID: "1A",
         Management: ["1A"], 
         Object: ["1B", "1C"],
@@ -76,7 +76,7 @@ var data1 = [
         Isdeleted: false        
     }, {
         ModuleID: 20,
-        CreatedByUserID: "1A",
+        CreatedByUserID: "1D",
         LastModifiedByUserID: "1A",
         Management: ["1A"], 
         Object: ["1B"],
@@ -101,7 +101,7 @@ var data1 = [
         Isdeleted: false        
     }, {
         ModuleID: 20,
-        CreatedByUserID: "1D",
+        CreatedByUserID: "1A",
         LastModifiedByUserID: "1D",
         Management: ["1D"], 
         Object: ["1D"],

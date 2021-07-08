@@ -1,42 +1,37 @@
 $(function(){
+    
 
     //Default Data to Show
     var store = new DevExpress.data.ArrayStore(data2);
     var data = new DevExpress.data.DataSource(store);
-    data.filter([
-        ["Phongban", "=", Phongbandata[1].id],
-        "or",
-        ["Phongban", "=", null]
-
-    ]);
     data.load().done;
 
-    function FilterData(id, option) {
+    function FilterData(option) {
         var op = check(option);
         switch (op) {
             case 1:
                 data.filter([
-                    ["Phongban", "=", id],
+                    ["color", "=", 1],
                     "or",
-                    ["Phongban", "=", null],
+                    ["color", "=", 2],
                 ]);
                 data.load().done;
                 break;
             case 2:
                 data.filter([                   
-                    ["Phongban", "=", id],                   
+                    ["color", "=", 2],                   
                 ]);
                 data.load().done;
                 break;
             case 3:
                 data.filter([                   
-                    ["Phongban", "=", null],                   
+                    ["color", "=", 1],                   
                 ]);
                 data.load().done;
                 break;
             case 4:
                 data.filter([                   
-                    ["Phongban", "=", 0],                   
+                    ["color", "=", 0],                   
                 ]);
                 data.load().done;
                 break;
@@ -71,8 +66,8 @@ $(function(){
             phongId = e.value;
             console.log(e.value);
             if(phongId == "PB1") {
-                store = new DevExpress.data.ArrayStore(data1);
-                data = new DevExpress.data.DataSource(store);
+                store = new DevExpress.data.ArrayStore(data1);  //Thay khối dữ liệu
+                data = new DevExpress.data.DataSource(store);   //Làm mới data
                 data.load();
                 view();
             } else if(phongId == "PB2") {
@@ -86,7 +81,7 @@ $(function(){
                 data.load();
                 view();
             };
-            FilterData(phongId, switchMaster);
+            FilterData(switchMaster);   //Lọc
         }
     });
 
@@ -99,7 +94,7 @@ $(function(){
         text: "Phòng ban",
         onValueChanged: function(e) {
             switchMaster[0] = e.value;
-            FilterData(phongId, switchMaster);
+            FilterData(switchMaster);
         }
     });
 
@@ -109,24 +104,25 @@ $(function(){
         text: "Cá nhân",
         onValueChanged: function(e) {
             switchMaster[1] = e.value;
-            FilterData(phongId, switchMaster);
+            FilterData(switchMaster);
         }
     });
     
+    //Resource đổ màu
     var Colordata = [
-    {
-        text: "Lịch cá nhân",
-        id: 1,
-        color: "#1793ff"
-    }, {
-        text: "Lịch phòng ban",
-        id: 2,
-        color: "#aa17ff"
-    }
+        {
+            text: "Lịch cá nhân",
+            id: 1,
+            color: "#1793ff"
+        }, {
+            text: "Lịch phòng ban",
+            id: 2,
+            color: "#aa17ff"
+        }
     ];
 
     function view() {
-        $("#scheduler").dxScheduler({
+        $("#scheduler").dxScheduler({       //Chú ý class/id của div
         timeZone: "America/Los_Angeles",
         dataSource: data,
         views: ["week", "month"],
@@ -165,13 +161,15 @@ $(function(){
             let mainGroupItems = form.itemOption('mainGroup').items;
             //console.log(mainGroupItems);
 
+            //Xóa field color tự động thêm của resource
             mainGroupItems.forEach(function callbackFn(element, index) {
                 if(element.dataField == "color") {
                     //console.log("color: " + index);
                     mainGroupItems.splice(index,1);
                 }
             });
-                      
+            
+            //form.itemOption không hoạt động(?)          
             mainGroupItems.forEach(function callbackFn(element, index) {
                 if(element.dataField == "MeetingRoomID") {
                     //console.log("Room: " + index);
@@ -180,6 +178,34 @@ $(function(){
                 }
             });
 
+            //Lấy dữ liệu Object với dataField Private, sau đó xóa Object khỏi mainGroupItems
+            var Imelem;               
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Private") {
+                                Imelem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });                      
+                    }
+                });
+                
+                //Xóa Object repeat khỏi mainGroupItems, thêm dữ liệu Object với dataField Private vào group Object allDay để thành 1 hàng
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {                       
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "repeat") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "allDay") {
+                                element.items.push(Imelem);
+                            }
+                        });
+                    }
+                });
 
 
             form.itemOption("mainGroup.Meeting", {
@@ -189,11 +215,12 @@ $(function(){
                     }
                 }
             });
-            
-            
+
+            console.log(mainGroupItems);
+            console.log(formData);
                 
             
-            
+            //THêm field để đưa/hiện dữ liệu cho dataField tương ứng
             if (!mainGroupItems.find(function (i) { return i.dataField === "Management" })) {
                 mainGroupItems.push({
                     colSpan: 2,
@@ -228,6 +255,7 @@ $(function(){
     }).dxScheduler("instance");
     }
     
+    //Hàm để hiện/ẩn field MeetingRoomID dựa vào AppoimentData
     view();
     function toggleRoom(bool) {
         if(bool != null){

@@ -4,7 +4,7 @@ $(function(){
     var store = new DevExpress.data.ArrayStore(data1);
     var data = new DevExpress.data.DataSource(store);
 
-    //Phongban dropdown box
+    //Mode dropdown box
     var modeId = Modedata[0].ID;
     $("#slbMode").dxSelectBox({
         items: Modedata,
@@ -15,10 +15,10 @@ $(function(){
             modeId = e.value;
             if(modeId == "M01") {
                 $("#phongField").hide();
-                store = new DevExpress.data.ArrayStore(data1);
-                data = new DevExpress.data.DataSource(store);
+                store = new DevExpress.data.ArrayStore(data1);  //Thay khối dữ liệu
+                data = new DevExpress.data.DataSource(store);   //Làm mới data
                 data.load();             
-                viewCongty();
+                viewCongty();                                   //Chạy hàm view tương ứng mode xem
             } else if(modeId == "M02") {
                 $("#phongField").show();
             } else if(modeId == "M03") {
@@ -58,6 +58,12 @@ $(function(){
     });
 
     function viewCongty() {
+        //Hiển thị/ẩn các div chứa các lịch tương ứng
+        // $("#lịchCongty").show();
+        // $("#lịchPhongban").hide()
+        // $("#lịchLanhdao").hide()
+
+        //Resoure đổ màu
         var Colordata = [
             {
                 text: "Lịch Công ty",
@@ -66,7 +72,7 @@ $(function(){
             }
         ];
 
-        $("#scheduler").dxScheduler({
+        $("#scheduler").dxScheduler({       //Thực tế cần div với class/id khác nhau cho mỗi view
             timeZone: "America/Los_Angeles",
             dataSource: data,
             views: ["day", "week", "month"],
@@ -95,13 +101,12 @@ $(function(){
             }],
             textExpr: "Title",
             onAppointmentFormOpening: function (e) {
-                //e.popup.option('showTitle', true);
-                //e.popup.option('title', e.appointmentData.text ?
-                //    e.appointmentData.text :
-                //    'Thêm Lịch Công Tác');
+                
                 const form = e.form;
                 var formData = form.option("formData");
                 let mainGroupItems = form.itemOption('mainGroup').items;
+                // e.popup.option('showTitle', true);
+                // e.popup.option('title','Thêm bởi ' + e.appointmentData.CreatedByUserID);
 
                 mainGroupItems.forEach(function callbackFn(element, index) {
                     if(element.dataField == "color") {
@@ -112,6 +117,45 @@ $(function(){
                 mainGroupItems.forEach(function callbackFn(element, index) {
                     if(element.dataField == "MeetingRoomID") {
                         mainGroupItems[index].colSpan = 2;
+                    }
+                });
+
+                var Imelem, Prielem;               
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Important") {
+                                Imelem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Private") {
+                                Prielem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });
+                    }
+                });
+                
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Meeting") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "repeat") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "allDay") {
+                                element.items.push(Imelem);
+                                element.items.push(Prielem);
+                            }
+                        });
                     }
                 });
           
@@ -144,7 +188,7 @@ $(function(){
                         },
                     });
                     form.itemOption('mainGroup', 'items', mainGroupItems);
-                }
+                }       
             }
         }).dxScheduler("instance");
     }
@@ -206,6 +250,45 @@ $(function(){
                 mainGroupItems.forEach(function callbackFn(element, index) {
                     if(element.dataField == "MeetingRoomID") {
                         mainGroupItems[index].colSpan = 2;
+                    }
+                });
+
+                var Imelem, Prielem;               
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Important") {
+                                Imelem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Private") {
+                                Prielem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });
+                    }
+                });
+                
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Meeting") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "repeat") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "allDay") {
+                                element.items.push(Imelem);
+                                element.items.push(Prielem);
+                            }
+                        });
                     }
                 });
           
@@ -331,15 +414,45 @@ $(function(){
                 mainGroupItems.forEach(function callbackFn(element, index) {
                     if(element.dataField == "MeetingRoomID") {
                         mainGroupItems[index].colSpan = 2;
-                        mainGroupItems[index].visible = toggleRoom(formData.Meeting);
                     }
                 });
 
-                form.itemOption("mainGroup.Meeting", {
-                    editorOptions: {
-                        onValueChanged: function(e) {
-                        form.itemOption("mainGroup.MeetingRoomID", "visible", e.value);
-                        }
+                var Imelem, Prielem;               
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Important") {
+                                Imelem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Private") {
+                                Prielem = ele;
+                                element.items.splice(i,1);
+                            }
+                        });
+                    }
+                });
+                
+                mainGroupItems.forEach(function callbackFn(element, index) {
+                    if(element.itemType == "group") {
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "Meeting") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "repeat") {
+                                element.items.splice(i,1);
+                            }
+                        });
+                        element.items.forEach(function callbackFn(ele, i) {
+                            if(ele.dataField == "allDay") {
+                                element.items.push(Imelem);
+                                element.items.push(Prielem);
+                            }
+                        });
                     }
                 });
           
