@@ -143,7 +143,9 @@ $(function(){
         resources: [{ 
             fieldExpr: "MeetingRoomID",
             dataSource: MettingRoomdata,
-            label: "Phòng"
+            label: "Phòng",
+            displayExpr: "RoomName",
+            valueExpr:"Roomid"
         }, { 
             fieldExpr: "color",
             dataSource: Colordata,

@@ -1,0 +1,79 @@
+.cdx-field {
+    width: 50%;
+    display: inline-block;
+    padding: 5px 15px;
+}
+
+.searchBox-wrapper {
+    float: right;
+    width: 75%;
+}
+
+.cdx-field-label {
+    width: 25% !important;
+}
+
+.cdx-field-value {
+    width: 75% !important;
+}
+
+.cdx-field-search-value {
+    float: left;
+    width: 90% !important;
+}
+
+#button {
+    width: 10%;
+}
+
+#slbPB-wrapper {
+    display: none;
+}
+
+.dx-radiogroup-horizontal .dx-radiobutton {
+    margin-right: 25px;
+}
+
+#gridContainer .dx-datagrid-header-panel {
+    padding: 0;
+    background-color: rgba(85, 149, 222, 0.6);
+}
+
+#gridContainer .dx-datagrid-header-panel .dx-toolbar {
+    margin: 0;
+    padding-right: 20px;
+    background-color: transparent;
+}
+
+#gridContainer .dx-datagrid-header-panel .dx-toolbar-items-container  {
+    height: 70px;
+}
+
+#gridContainer .dx-datagrid-header-panel .dx-toolbar-before .dx-toolbar-item:not(:first-child) {
+    background-color: rgba(103, 171, 255, 0.6);
+}
+
+#gridContainer .dx-datagrid-header-panel .dx-toolbar-before .dx-toolbar-item:last-child {
+    padding-right: 10px;
+}
+
+#gridContainer .dx-datagrid-header-panel .dx-selectbox {
+    margin: 17px 10px;
+}
+
+#gridContainer .dx-datagrid-header-panel .dx-button {
+     margin: 17px 0;
+}
+
+#gridContainer .informer {
+    height: 70px;
+    width: 130px;
+    text-align: center;
+    color: #fff;
+}
+
+#gridContainer .count {
+    padding-top: 15px;
+    line-height: 27px;
+	margin: 0;
+}

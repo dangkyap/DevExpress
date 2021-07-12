@@ -21,6 +21,10 @@ $(function(){
                 viewCongty();                                   //Chạy hàm view tương ứng mode xem
             } else if(modeId == "M02") {
                 $("#phongField").show();
+                store = new DevExpress.data.ArrayStore(data21);
+                data = new DevExpress.data.DataSource(store);
+                data.load();
+                viewPhongban();
             } else if(modeId == "M03") {
                 $("#phongField").hide();
                 store = new DevExpress.data.ArrayStore(data3);
@@ -36,6 +40,7 @@ $(function(){
         items: Phongbandata,
         displayExpr: "DepartmentName",
         valueExpr: "ID",
+        value: Phongbandata[1].ID,
         onValueChanged: function (e) {
             phongId = e.value;
             if(phongId == "ac6fad12-0dc2-4da9-9312-94ebcff7cbb1") {
@@ -59,9 +64,9 @@ $(function(){
 
     function viewCongty() {
         //Hiển thị/ẩn các div chứa các lịch tương ứng
-        // $("#lịchCongty").show();
-        // $("#lịchPhongban").hide()
-        // $("#lịchLanhdao").hide()
+        $("#schedulerCT").show();
+        $("#schedulerPB").hide();
+        $("#schedulerLD").hide();
 
         //Resoure đổ màu
         var Colordata = [
@@ -72,7 +77,7 @@ $(function(){
             }
         ];
 
-        $("#scheduler").dxScheduler({       //Thực tế cần div với class/id khác nhau cho mỗi view
+        $("#schedulerCT").dxScheduler({       //Thực tế cần div với class/id khác nhau cho mỗi view
             timeZone: "America/Los_Angeles",
             dataSource: data,
             views: ["day", "week", "month"],
@@ -192,10 +197,13 @@ $(function(){
             }
         }).dxScheduler("instance");
     }
-    
-    viewCongty();
 
     function viewPhongban() {
+
+        $("#schedulerCT").hide();
+        $("#schedulerPB").show();
+        $("#schedulerLD").hide();
+
         var Colordata = [
             {
                 text: "Lịch Phòng ban",
@@ -204,7 +212,7 @@ $(function(){
             }
         ];
 
-        $("#scheduler").dxScheduler({
+        $("#schedulerPB").dxScheduler({
             timeZone: "America/Los_Angeles",
             dataSource: data,
             views: ["day", "week", "month"],
@@ -327,11 +335,15 @@ $(function(){
     }
 
     function viewLanhdao() {
-        $("#scheduler").dxScheduler({
+        $("#schedulerCT").hide();
+        $("#schedulerPB").hide();
+        $("#schedulerLD").show();
+
+        $("#schedulerLD").dxScheduler({
             timeZone: "America/Los_Angeles",
             dataSource: data,
             views: ["day", "week", "month"],
-            currentView: "week",
+            currentView: "month",
             currentDate: new Date(2021, 2, 29),
             firstDayOfWeek: 1,
             startDayHour: 7,
@@ -520,4 +532,14 @@ $(function(){
                 .filter("id", id)
                 .toArray()[0];
     }
+
+     viewLanhdao();
+     //viewCongty();
+
+    // $(document).ready(function(){
+    //     viewLanhdao();
+    //     viewCongty();
+    // });
+
+
 });

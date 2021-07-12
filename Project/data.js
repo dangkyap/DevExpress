@@ -523,14 +523,14 @@ var UserIDdata = [
 
 var MettingRoomdata = [
     {
-        text: "Phòng họp tầng 2",
-        id: "R1"
+        RoomName: "Phòng họp tầng 2",
+        Roomid: "R1"
     }, {
-        text: "Hội trường tầng 4",
-        id: "R2"
+        RoomName: "Hội trường tầng 4",
+        Roomid: "R2"
     }, {
-        text: "Đại sảnh tầng 1",
-        id: "R3"
+        RoomName: "Đại sảnh tầng 1",
+        Roomid: "R3"
     }
 ];
 

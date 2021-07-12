@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DevExtreme Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.4/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.4/css/dx.light.css" />
+    <!-- <script src="https://cdn3.devexpress.com/jslib/21.1.4/js/dx.all.js"></script> -->
+    <script src="data.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="index.js"></script>
+    <script src="dev.js"></script>
+</head>
+<body class="dx-viewport">
+    <div class="demo-container">
+        <div id="form">
+            <div class="dx-fieldset">
+                <div class="dx-field cdx-field" style="float: left;">
+                    <div class="dx-field-label cdx-field-label">Chế độ xem</div>
+                    <div class="dx-field-value cdx-field-value">
+                        <div id="slbMode"></div>
+                    </div>
+                </div>
+                <div class="dx-field cdx-field" id="slbPB-placeholder"></div>
+                <div class="dx-field cdx-field" id="slbPB-wrapper">
+                    <div class="dx-field-label cdx-field-label">Phòng ban</div>
+                    <div class="dx-field-value cdx-field-value">
+                        <div id="slbPB"></div>
+                    </div>         
+                </div>
+            </div>
+        </div>
+        <div id="form">
+            <div class="dx-fieldset">
+                <div class="dx-field cdx-field" style="float: left;">
+                    <div class="dx-field-label cdx-field-label">Lọc theo thời gian</div>
+                    <div class="dx-field-value cdx-field-value">
+                        <div id="radio-group"></div>
+                    </div>
+                </div>
+                <div class="dx-field cdx-field">
+                    <div class="searchBox-wrapper">
+                        <div class="dx-field-value cdx-field-search-value">
+                            <div id="txtSearch"></div>
+                        </div>
+                        <div id="button"></div>
+                    </div>      
+                </div>
+            </div>
+        </div>
+        <div id="gridContainer"></div>
+    </div>
+</body>
+</html>
