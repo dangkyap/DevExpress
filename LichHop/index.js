@@ -363,7 +363,7 @@ $(function(){
                 label: "Lãnh Đạo"
             }],
             resourceCellTemplate: function (cellData) {
-                console.log(cellData);
+                //console.log(cellData);
                 var name = $("<div>")
                     .addClass("name")
                     .css({ backgroundColor: cellData.color })
@@ -386,6 +386,8 @@ $(function(){
                 var employeeID = cellData.employeeID,
                     currentTraining = getCurrentTraining(cellData.startDate.getDate(), employeeID);
 
+                    //console.log(cellData)
+
                 var wrapper = $("<div>")
                     .toggleClass("employee-weekend-" + employeeID, isWeekEnd(cellData.startDate)).appendTo(container)
                     .addClass("employee-" + employeeID)
@@ -397,8 +399,11 @@ $(function(){
                     .addClass("day-cell")
                 );
             },
+            // appointmentTooltipTemplate: function(model) {
+            //     return getTooltipTemplate(getCalendarById(model.targetedAppointmentData.CalendarID), getLanhDaoById(model.targetedAppointmentData.employeeID));
+            // },
             onAppointmentAdded: function(e) {
-                console.log(e);
+                //console.log(e);
                 showToast("Added",e.appointmentData.text, "success");
             },
             onAppointmentUpdated: function(e) {
@@ -407,12 +412,38 @@ $(function(){
             onAppointmentDeleted: function(e) {
                 showToast("Deleted",e.appointmentData.text, "error");
             },
+            onAppointmentRendered: function(e) {
+                console.log(e.component)
+                // e.component._currentView = "day";
+                if(e.appointmentData.Status == 1 || e.appointmentData.Status == 4) {
+                    //console.log(e.component._appointmentTooltip._options.container[0])
+                    e.appointmentElement[0].style.backgroundColor = "#ed4049";
+                    //e.component._appointmentTooltip._options.container[0].style.background = "#ed4049";
+                }
+            },
+            // onContentReady: function (e) {
+            //     console.log(e.component._appointmentTooltip._options.container[0].style)       
+            //         e.component._appointmentTooltip._options.container[0].style.background = "#ed4049";
+            // },
+            onAppointmentClick: function(e) {
+                // if(e.appointmentData.Status == 1 || e.appointmentData.Status == 4) {
+                //     //console.log(e.component)
+                //     //console.log(e.component._appointmentTooltip._options.container[0].style.background)
+                //     //e.cancel = true;
+                //     // $(".dx-tooltip-appointment-item-marker-body").addClass("custom-tooltip-red");
+                //     // e.cancel = false;
+                // }
+            },
             textExpr: "Title",
             onAppointmentFormOpening: function (e) {
-                //e.popup.option('showTitle', true);
-                //e.popup.option('title', e.appointmentData.text ?
+                // e.popup.option('showTitle', true);
+                // e.popup.option('title', e.appointmentData.text ?
                 //    e.appointmentData.text :
                 //    'Thêm Lịch Công Tác');
+                 //e.popup.option('width', "1500px")
+                 e.popup.option('minWidth', "1000px")
+                
+
                 const form = e.form;
                 var formData = form.option("formData");
                 let mainGroupItems = form.itemOption('mainGroup').items;
@@ -429,23 +460,23 @@ $(function(){
                     }
                 });
 
-                var Imelem, Prielem;               
-                mainGroupItems.forEach(function callbackFn(element, index) {
-                    if(element.itemType == "group") {
-                        element.items.forEach(function callbackFn(ele, i) {
-                            if(ele.dataField == "Important") {
-                                Imelem = ele;
-                                element.items.splice(i,1);
-                            }
-                        });
-                        element.items.forEach(function callbackFn(ele, i) {
-                            if(ele.dataField == "Private") {
-                                Prielem = ele;
-                                element.items.splice(i,1);
-                            }
-                        });
-                    }
-                });
+                // var Imelem, Prielem;               
+                // mainGroupItems.forEach(function callbackFn(element, index) {
+                //     if(element.itemType == "group") {
+                //         element.items.forEach(function callbackFn(ele, i) {
+                //             if(ele.dataField == "Important") {
+                //                 Imelem = ele;
+                //                 element.items.splice(i,1);
+                //             }
+                //         });
+                //         element.items.forEach(function callbackFn(ele, i) {
+                //             if(ele.dataField == "Private") {
+                //                 Prielem = ele;
+                //                 element.items.splice(i,1);
+                //             }
+                //         });
+                //     }
+                // });
                 
                 mainGroupItems.forEach(function callbackFn(element, index) {
                     if(element.itemType == "group") {
@@ -454,17 +485,17 @@ $(function(){
                                 element.items.splice(i,1);
                             }
                         });
-                        element.items.forEach(function callbackFn(ele, i) {
-                            if(ele.dataField == "repeat") {
-                                element.items.splice(i,1);
-                            }
-                        });
-                        element.items.forEach(function callbackFn(ele, i) {
-                            if(ele.dataField == "allDay") {
-                                element.items.push(Imelem);
-                                element.items.push(Prielem);
-                            }
-                        });
+                        // element.items.forEach(function callbackFn(ele, i) {
+                        //     if(ele.dataField == "repeat") {
+                        //         element.items.splice(i,1);
+                        //     }
+                        // });
+                        // element.items.forEach(function callbackFn(ele, i) {
+                        //     if(ele.dataField == "allDay") {
+                        //         element.items.push(Imelem);
+                        //         element.items.push(Prielem);
+                        //     }
+                        // });
                     }
                 });
           
@@ -533,8 +564,39 @@ $(function(){
                 .toArray()[0];
     }
 
+    // function getCalendarById(id) {
+    //     return DevExpress.data.query(data3)
+    //             .filter("CalendarID", id)
+    //             .toArray()[0];
+    // }
+
+    // function getLanhDaoById(id) {
+    //     return DevExpress.data.query(ListLanhDao)
+    //             .filter("id", id)
+    //             .toArray()[0];
+    // }
+
+    // function getTooltipTemplate(data, lanhdao) {
+    //     return $("<div class='dx-tooltip-appointment-item'>" +
+    //                 "<div class='dx-tooltip-appointment-item-marker'>" +
+    //                     "<div class='dx-tooltip-appointment-item-marker-body' style='background:" + lanhdao.color + " none repeat scroll 0% 0%;'></div>" +
+    //                 "</div>" +
+    //                 "<div class='dx-tooltip-appointment-item-content'>" +
+    //                     "<div class='dx-tooltip-appointment-item-content-subject'>" + data.Title + "</div>" + 
+    //                     "<div class='dx-tooltip-appointment-item-content-date'>" + data.startDate.getMonth() + "</div>" + 
+    //                 "<div>" +
+    //                 // "<div class='dx-tooltip-appointment-item-delete-button-container'>" + 
+    //                 //     "<div class='dx-tooltip-appointment-item-delete-button dx-button dx-button-normal dx-button-mode-text dx-widget dx-button-has-icon' aria-label='trash' tabindex='0' role='button'>" + 
+    //                 //         "<div class='dx-button-content'>" + 
+    //                 //             "<i class='dx-icon dx-icon-trash'></i>" + 
+    //                 //         "</div>" +
+    //                 //     "</div>" +
+    //                 // "</div>" +
+    //             "</div>");
+    // }
+
      viewLanhdao();
-     //viewCongty();
+     viewCongty();
 
     // $(document).ready(function(){
     //     viewLanhdao();

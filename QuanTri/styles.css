@@ -30,6 +30,16 @@
     display: none;
 }
 
+.options {
+     padding: 20px;
+     margin-top: 20px;
+     background-color: rgba(191, 191, 191, 0.15);
+}
+
+.option {
+    margin-top: 10px;
+}
+
 .dx-radiogroup-horizontal .dx-radiobutton {
     margin-right: 25px;
 }

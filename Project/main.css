@@ -1,11 +1,11 @@
 .cdx-field-label {
-	 width: 350px;
+	 width: 250px;
 	 font-weight: bold;
 	 float:  left;
 }
 
 .cdx-field-value {
-	width: 30% !important;
+	width: 40% !important;
 	float: left;
 }
 
@@ -19,4 +19,8 @@
 
 #switch-Cn > .dx-checkbox-container > .dx-checkbox-text {
 	color:  #1793ff;
+}
+
+#switch-Cd > .dx-checkbox-container > .dx-checkbox-text {
+	color:  #ed4049;
 }

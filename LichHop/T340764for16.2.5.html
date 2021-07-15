@@ -1,0 +1,329 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>T340764</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/16.2.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/16.2.5/css/dx.light.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>-->
+    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/16.2.5/js/dx.all.js"></script>
+    <!-- <script src="dev.js"></script> -->
+
+    <script type="text/javascript">
+        //<![CDATA[
+        $(document).ready(function () {
+
+var data1 = [
+    {
+        ModuleID: 20,
+        CreatedByUserID: "1A",
+        LastModifiedByUserID: "1A",
+        Management: ["1D"], 
+        Object: ["1A", "1B", "1C"],
+        CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
+        LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
+        OwnerCode: "P1",
+        color: 0,
+        startDate: new Date("2021-03-29T16:30:00.000Z"),
+        endDate: new Date("2021-03-29T18:30:00.000Z"),
+        allDay: false,
+        Title: "Lịch Công ty 1",
+        description: "Website Re-Design Plan",
+        IsFile: false,
+        Status: 2,
+        Private: false,
+        Meeting: true,   
+        MeetingRoomID: ["R2"],
+        Phongban: null,
+        Important: true,
+        Comment: null,
+        laplai: false,
+        Isdeleted: false        
+    }, {
+        ModuleID: 20,
+        CreatedByUserID: "1B",
+        LastModifiedByUserID: "1B",
+        Management: ["1B"], 
+        Object: ["1B"],
+        CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
+        LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
+        OwnerCode: "P1",
+        color: 0,
+        startDate: new Date("2021-03-29T19:00:00.000Z"),
+        endDate: new Date("2021-03-29T20:00:00.000Z"),
+        allDay: false,
+        Title: "Lịch Công ty 2",
+        description: "Book Flights to San Fran for Sales Trip",
+        IsFile: false,
+        Status: 2,
+        Private: false,
+        Meeting: true,   
+        MeetingRoomID: ["R2"],
+        Important: true,
+        Comment: null,
+        laplai: false,
+        Isdeleted: false        
+    }, {
+        ModuleID: 20,
+        CreatedByUserID: "1C",
+        LastModifiedByUserID: "1A",
+        Management: ["1A"], 
+        Object: ["1B", "1C"],
+        CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
+        LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
+        OwnerCode: "P1",
+        color: 0,
+        startDate: new Date("2021-03-29T21:30:00.000Z"),
+        endDate: new Date("2021-03-29T22:30:00.000Z"),
+        allDay: true,
+        Title: "Lịch Công ty 3",
+        description: "Install New Router in Dev Room",
+        IsFile: false,
+        Status: 2,
+        Private: false,
+        Meeting: true,   
+        MeetingRoomID: null,
+        Phongban: null,
+        Important: true,
+        Comment: null,
+        laplai: false,
+        Isdeleted: false        
+    }, {
+        ModuleID: 20,
+        CreatedByUserID: "1D",
+        LastModifiedByUserID: "1A",
+        Management: ["1A"], 
+        Object: ["1B"],
+        CreatedOnDate: new Date("2021-02-30T16:30:00.000Z"),
+        LastModifiedOnDate: new Date("2021-02-30T17:00:00.000Z"),
+        OwnerCode: "P1",
+        color: 0,
+        startDate: new Date("2021-03-31T16:45:00.000Z"),
+        endDate: new Date("2021-03-31T18:15:00.000Z"),
+        allDay: true,
+        Title: "Lịch Công ty 4",
+        description: "Install New Database",
+        IsFile: false,
+        Status: 2,
+        Private: false,
+        Meeting: true,   
+        MeetingRoomID: null,
+        Phongban: null,
+        Important: true,
+        Comment: null,
+        laplai: false,
+        Isdeleted: false        
+    }, {
+        ModuleID: 20,
+        CreatedByUserID: "1A",
+        LastModifiedByUserID: "1D",
+        Management: ["1D"], 
+        Object: ["1D"],
+        CreatedOnDate: new Date("2021-02-29T16:30:00.000Z"),
+        LastModifiedOnDate: new Date("2021-02-29T17:00:00.000Z"),
+        OwnerCode: "P1",
+        color: 0,
+        startDate: new Date("2021-03-31T22:15:00.000Z"),
+        endDate: new Date("2021-03-31T23:30:00.000Z"),
+        allDay: false,
+        Title: "Lịch Lịch Công ty 5",
+        description: "Upgrade Personal Computers",
+        IsFile: false,
+        Status: 2,
+        Private: true,
+        Meeting: true,   
+        MeetingRoomID: null,
+        Important: false,
+        Comment: null,
+        laplai: false,
+        Isdeleted: false        
+    }
+];
+
+var Colordata = [
+    {
+        text: "Lịch Công ty",
+        id: 0,
+        color: "#2bcc53"
+    }
+];
+
+var MettingRoomdata = [
+    {
+        text: "Phòng họp tầng 2",
+        id: "R1"
+    }, {
+        text: "Hội trường tầng 4",
+        id: "R2"
+    }, {
+        text: "Đại sảnh tầng 1",
+        id: "R3"
+    }
+];
+
+var UserIDdata = [
+    {
+        text: "Griffith Chinnock",
+        id: "1A",
+        tuoi: 27
+    }, {
+        text: "Marya Carrel",
+        id: "1B",
+        tuoi: 21
+    }, {
+        text: "Koenraad Haglington",
+        id: "1C",
+        tuoi: 37
+    }, {
+        text: "Dewitt Metheringham",
+        id: "1D",
+        tuoi: 47
+    }
+];
+
+    var store = new DevExpress.data.ArrayStore(data1);
+    var data = new DevExpress.data.DataSource(store);
+
+            $("#schedulerContainer").dxScheduler({
+                dataSource: data,
+                views: ["agenda", "month", "week", "workWeek", "day"],
+                currentView: "week",
+                currentDate: new Date(2021, 2, 28),
+                firstDayOfWeek: 0,
+                startDayHour: 8,
+                endDayHour: 19,
+                textExpr: "Title",
+                onAppointmentAdded: function(e) {
+                showToast("Added",e.appointmentData.text, "success");
+                },
+                onAppointmentUpdated: function(e) {
+                    showToast("Updated",e.appointmentData.text, "info");
+                },
+                onAppointmentDeleted: function(e) {
+                    showToast("Deleted",e.appointmentData.text, "error");
+                },
+                resources: [{ 
+                    fieldExpr: "MeetingRoomID",
+                    dataSource: MettingRoomdata,
+                    label: "Phòng"
+                }, {
+                    fieldExpr: "color",
+                    dataSource: Colordata,
+                    useColorAsDefault: true,
+                }],
+                height: 600,
+                onContentReady: function (e) {
+                    var popupConfig = e.component._popupConfig;
+                    console.log(e.component._popupConfig)
+                    e.component._popupConfig = function () {
+                        var popupOptions = popupConfig.apply(e.component, arguments)
+                        var newWidth = $(window).width() - 5 /*small padding*/;
+
+                        return $.extend(popupOptions, {
+                            maxWidth: newWidth,
+                            width: newWidth,
+                            height: 400
+                        });
+                    }
+                },
+                onAppointmentFormOpening: function (e) {
+                
+                    const form = e.form;
+                    var formData = form.option("formData");
+                    let mainGroupItems = form.itemOption('mainGroup').items;
+                    // e.popup.option('showTitle', true);
+                    // e.popup.option('title','Thêm bởi ' + e.appointmentData.CreatedByUserID);
+
+                    mainGroupItems.forEach(function callbackFn(element, index) {
+                        if(element.dataField == "color") {
+                            mainGroupItems.splice(index,1);
+                        }
+                    });
+                              
+                    mainGroupItems.forEach(function callbackFn(element, index) {
+                        if(element.dataField == "MeetingRoomID") {
+                            mainGroupItems[index].colSpan = 2;
+                        }
+                    });
+
+                    var Imelem, Prielem;               
+                    mainGroupItems.forEach(function callbackFn(element, index) {
+                        if(element.itemType == "group") {
+                            element.items.forEach(function callbackFn(ele, i) {
+                                if(ele.dataField == "Important") {
+                                    Imelem = ele;
+                                    element.items.splice(i,1);
+                                }
+                            });
+                            element.items.forEach(function callbackFn(ele, i) {
+                                if(ele.dataField == "Private") {
+                                    Prielem = ele;
+                                    element.items.splice(i,1);
+                                }
+                            });
+                        }
+                    });
+                    
+                    mainGroupItems.forEach(function callbackFn(element, index) {
+                        if(element.itemType == "group") {
+                            element.items.forEach(function callbackFn(ele, i) {
+                                if(ele.dataField == "Meeting") {
+                                    element.items.splice(i,1);
+                                }
+                            });
+                            element.items.forEach(function callbackFn(ele, i) {
+                                if(ele.dataField == "repeat") {
+                                    element.items.splice(i,1);
+                                }
+                            });
+                            element.items.forEach(function callbackFn(ele, i) {
+                                if(ele.dataField == "allDay") {
+                                    element.items.push(Imelem);
+                                    element.items.push(Prielem);
+                                }
+                            });
+                        }
+                    });
+              
+                    if (!mainGroupItems.find(function (i) { return i.dataField === "Management" })) {
+                        mainGroupItems.push({
+                            colSpan: 2,
+                            label: { text: "Chủ trì" },
+                            editorType: "dxTagBox",
+                            dataField: "Management",
+                            editorOptions: {
+                                dataSource: UserIDdata,
+                                valueExpr: "id",
+                                displayExpr: "text",
+                                searchEnabled: true,
+                            },
+                        });
+                        form.itemOption('mainGroup', 'items', mainGroupItems);
+                    }
+                    if (!mainGroupItems.find(function (i) { return i.dataField === "Object" })) {
+                        mainGroupItems.push({
+                            colSpan: 2,
+                            label: { text: "Người tham gia" },
+                            editorType: "dxTagBox",
+                            dataField: "Object",
+                            editorOptions: {
+                                dataSource: UserIDdata,
+                                valueExpr: "id",
+                                displayExpr: "text",
+                                searchEnabled: true,
+                            },
+                        });
+                        form.itemOption('mainGroup', 'items', mainGroupItems);
+                    }       
+                }
+            });
+        });
+        //]]>
+    </script>
+</head>
+<body>
+    <div id="schedulerContainer"></div>
+</body>
+</html>

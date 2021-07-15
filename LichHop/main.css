@@ -1,3 +1,7 @@
+.dx-tooltip-appointment-item-marker-body {
+	background: #ed4049 none repeat scroll 0% 0% !important;
+}
+
 .cdx-field-label {
 	 width: 350px;
 	 font-weight: bold;
